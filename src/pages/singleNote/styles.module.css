@@ -1,0 +1,44 @@
+.container{
+    background-color: #F7ECDC;
+    width: 100%;
+    /* height: 100%; */
+    flex: 1;
+    overflow: scroll;
+}
+
+.note{
+    background-color: #F7ECDC;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    padding: 20px;
+}
+
+.note > p{
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: left;
+    /* background-color: blue; */
+}
+
+.left{
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding: 10px;
+    margin-right: 1rem;
+    /* background-color: aqua; */
+}
+
+.left > p{
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    text-align: left;
+    /* background-color: blue; */
+    padding: 0;
+}

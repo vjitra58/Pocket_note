@@ -1,0 +1,35 @@
+.container{
+    width: 100%;
+    background-color:#E8E8E8;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.container > h2{
+    height: 40px;
+    width: 40px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    background-color: var(--bc);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container > p{
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: auto 0;
+    color: black;
+}
+
