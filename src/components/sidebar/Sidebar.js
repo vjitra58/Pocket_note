@@ -5,9 +5,11 @@ import AddIcon from "@mui/icons-material/Add";
 import RModel from '../modal/RModel';
 import { StateContext } from '../../App';
 import CloseIcon from "@mui/icons-material/Close";
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({open, setOpen}) => {
+  const navigate = useNavigate();
   const stateContext = useContext(StateContext);
   const {state, dispatch} = stateContext;
   const {currentNoteBook} = state;
@@ -78,6 +80,45 @@ const Sidebar = ({open, setOpen}) => {
     noteBookRef.current.classList.add(styles.active);
   }
 
+
+  const handleDelete = (id) => {
+    console.log("deleting");
+    dispatch({
+      type: "DELETE_NOTEBOOK",
+      id: id
+    })
+
+    localStorage.removeItem(id);
+    //setting currmessages
+    if(noteBooks.length){
+      const messages = JSON.parse(localStorage.getItem(noteBooks[0].id));
+      dispatch({
+        type: "CURR_MESSAGES",
+        payload: messages,
+      });
+    }else{
+      
+      dispatch({
+        type: "CURR_MESSAGES",
+        payload: [],
+      });
+    }
+    // if(noteBooks.length){
+    //    const newCurrentBook = noteBooks.filter((note) => note.id !== id)[0];
+    //     dispatch({
+    //       type: "SET_CURRENT_NOTEBOOK",
+    //       payload: newCurrentBook,
+    //     });
+    // }else{
+    //   dispatch({
+    //     type: "SET_CURRENT_NOTEBOOK",
+    //     payload: null,
+    //   });
+    // }
+  }
+
+
+
   const createNotePage = ()=>{
     setIsOpen(true);
     return;
@@ -110,7 +151,8 @@ const Sidebar = ({open, setOpen}) => {
                 <h1 style={{ "--bc": notebook.color }}>
                   {notebook.name.substring(0, 2).toUpperCase()}
                 </h1>
-                <p>{notebook.name}</p>
+                <p>{notebook.name.split(" ")[0]}</p>
+                <span onClick={() => handleDelete(notebook.id)}><DeleteIcon sx={{fontSize: "1rem"}}/></span>
               </div>
             );
           })}

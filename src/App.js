@@ -40,6 +40,11 @@ const reducer = (state, action) => {
       return newState3;
     case "SET_GLOBAL_STATE":
       return action.payload;
+    case "DELETE_NOTEBOOK":
+      return {
+        ...state,
+        noteBooks: state.noteBooks.filter((note) => note.id !== action.id),
+      }
     default:
       return state;
   }
@@ -66,6 +71,9 @@ function App() {
       navigate("/note");
     }
 
+    if(JSON.parse(data)==null || JSON.parse(data)==undefined || JSON.parse(data).noteBooks.length==0){
+      localStorage.clear();
+    }
   }, []);
 
 
